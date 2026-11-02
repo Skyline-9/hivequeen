@@ -1,0 +1,19 @@
+# Runs with no agent provider configured.
+name = "command-only"
+parallel = 2
+
+[[steps]]
+id = "lines"
+inputs = ["notes.md"]
+exec = ["/bin/sh", "-c", "wc -l < notes.md"]
+
+[[steps]]
+id = "words"
+inputs = ["notes.md"]
+exec = ["/bin/sh", "-c", "wc -w < notes.md"]
+
+[[steps]]
+id = "check"
+needs = ["lines", "words"]
+inputs = ["check.sh"]
+exec = ["/bin/sh", "check.sh"]

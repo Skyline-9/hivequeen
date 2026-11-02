@@ -1,0 +1,31 @@
+name = "explain-a-regression"
+parallel = 2
+timeout_secs = 3600
+
+[[steps]]
+id = "inspect"
+backend = "droid"
+prompt = "Find the smallest evidence-backed explanation for the question. State your uncertainty."
+inputs = ["question.md"]
+
+[[steps]]
+id = "challenge"
+backend = "codex"
+prompt = "Independently look for a counterexample to the most likely explanation for the question."
+inputs = ["question.md"]
+
+[[steps]]
+id = "decide"
+backend = "claude"
+needs = ["inspect", "challenge"]
+prompt = """Compare the two answers. Use exactly these headings:
+## Conclusion
+## Disagreements
+## Unsupported claims
+Keep every disagreement; do not invent consensus."""
+
+[[steps]]
+id = "check"
+needs = ["decide"]
+inputs = ["check-decision.sh"]
+exec = ["/bin/sh", "check-decision.sh"]

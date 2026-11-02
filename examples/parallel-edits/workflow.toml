@@ -1,0 +1,22 @@
+# Two editing steps run at the same time, each in its own worktree (cell).
+# Their results merge in declaration order; a conflict fails the later step.
+# Run with: hivequeen run workflow.toml --repo /path/to/clean/repo
+name = "parallel-edits"
+parallel = 2
+
+[[steps]]
+id = "docs"
+edit = true
+prompt = "Fix typos in README.md. Change nothing else."
+
+[[steps]]
+id = "tests"
+edit = true
+backend = "codex"
+prompt = "Add one missing unit test for the parser. Change nothing else."
+
+[[steps]]
+id = "check"
+needs = ["docs", "tests"]
+# Replace with your project's test command.
+exec = ["cargo", "test", "--locked"]

@@ -1,0 +1,1 @@
+{"type":"result","subtype":"success","is_error":false,"duration_ms":4100,"num_turns":3,"result":"Counterexample: the bug reproduces with an empty cache.","session_id":"c1a7","total_cost_usd":0.0123,"usage":{"input_tokens":900,"output_tokens":60},"modelUsage":{"claude-sonnet-5":{"inputTokens":900,"outputTokens":60}},"permission_denials":[]}

@@ -1,0 +1,1 @@
+{"type":"result","subtype":"error_max_turns","is_error":true,"duration_ms":9000,"num_turns":8,"session_id":"c1a8","permission_denials":[{"tool_name":"Bash","tool_input":{"command":"rm -rf build"}}]}

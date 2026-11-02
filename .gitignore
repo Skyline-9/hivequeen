@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+
+# Rust build artifacts
+/target/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Rust Analyzer / rustc
+*.rs.bk
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local tooling / agent files
+/.superpowers/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak

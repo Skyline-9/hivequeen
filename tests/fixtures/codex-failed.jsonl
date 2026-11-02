@@ -1,0 +1,3 @@
+{"type":"thread.started","thread_id":"thread_456"}
+{"type":"turn.started"}
+{"type":"turn.failed","error":{"message":"rate limited"}}
