@@ -389,6 +389,7 @@ pub enum Autonomy {
     #[default]
     Low,
     Medium,
+    High,
 }
 
 #[derive(Debug, Clone, Default, Deserialize)]
@@ -603,5 +604,18 @@ mod tests {
             "name = \"t\"\n[[steps]]\nid = \"a\"\nprompt = \"x\"\ninputs = [\"a/q.md\", \"b/q.md\"]\n",
         );
         assert!(m.contains("q.md"), "{m}");
+    }
+
+    #[test]
+    fn autonomy_levels_deserialize() {
+        for (raw, expected) in [
+            ("low", Autonomy::Low),
+            ("medium", Autonomy::Medium),
+            ("high", Autonomy::High),
+        ] {
+            let s: Settings =
+                toml::from_str(&format!("[droid]\nedit_autonomy = \"{raw}\"\n")).unwrap();
+            assert_eq!(s.droid.edit_autonomy, Some(expected));
+        }
     }
 }

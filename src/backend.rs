@@ -143,6 +143,7 @@ impl Backend {
                     let level = match s.droid.edit_autonomy.unwrap_or_default() {
                         crate::config::Autonomy::Low => "low",
                         crate::config::Autonomy::Medium => "medium",
+                        crate::config::Autonomy::High => "high",
                     };
                     inv.arg("--auto").arg(level);
                 }
@@ -410,6 +411,15 @@ mod tests {
             has(&a, &["--auto", "medium"]) && has(&a, &["--reasoning-effort", "high"]),
             "{a:?}"
         );
+        let s_high = Settings {
+            droid: DroidSettings {
+                edit_autonomy: Some(Autonomy::High),
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+        let a_high = argv(Backend::Droid, true, true, None, &s_high)?;
+        assert!(has(&a_high, &["--auto", "high"]), "{a_high:?}");
         Ok(())
     }
 

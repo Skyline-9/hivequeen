@@ -99,7 +99,7 @@ git -C /path/to/repo for-each-ref --format='%(refname)' refs/hivequeen/<run-id>/
 
 | Backend | Invocation |
 | --- | --- |
-| Droid (default) | `droid exec --cwd <dir> --output-format json --file <prompt>`; editing adds `--auto low` (or `medium`) |
+| Droid (default) | `droid exec --cwd <dir> --output-format json --file <prompt>`; editing adds `--auto low` (or `medium`, `high`) |
 | Claude Code | `claude --print --output-format json --permission-mode dontAsk`, prompt on stdin; research allows `Read,Grep,Glob`; editing uses `acceptEdits` |
 | Codex | `codex --ask-for-approval never exec --json --sandbox read-only --cd <dir> -`, prompt on stdin; editing uses `workspace-write` |
 
@@ -112,7 +112,7 @@ Optional settings go in `hivequeen.toml`:
 program = "droid"
 model = "claude-sonnet-5"
 reasoning_effort = "high"
-edit_autonomy = "low"            # low or medium
+edit_autonomy = "low"            # low, medium, or high
 
 [claude]
 model = "claude-sonnet-5"
